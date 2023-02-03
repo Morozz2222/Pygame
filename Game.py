@@ -125,7 +125,6 @@ def play():
     obstacle_group = pygame.sprite.Group()
     player_group = pygame.sprite.Group()
     addition_group = pygame.sprite.Group()
-    lives_group = pygame.sprite.Group()
     Obstacles(CARS_SURF[randint(0, 2)], obstacle_group)
     score = 0
     play_sound.play(-1)
