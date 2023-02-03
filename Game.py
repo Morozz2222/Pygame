@@ -250,7 +250,6 @@ def start_window():
         time_delta = mainClock.tick(FPS) / 1000.0
 
         for event in pygame.event.get():
-            manager.process_events(event)
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
                     go_play_sound.play()
@@ -260,32 +259,35 @@ def start_window():
                 # run = False
                 exit_go()
             # Используем pygame_gui
-            if event.type == pygame_gui.UI_DROP_DOWN_MENU_CHANGED:
-                lev = event.text
-                # В переменную записываем выбраный уровень
+            manager.process_events(event)
+            # Используем pygame_gui
+            if event.type == pygame.USEREVENT:
+                if event.user_type == pygame_gui.UI_DROP_DOWN_MENU_CHANGED:
+                    lev = event.text
+                    # В переменную записываем выбраный уровень
 
-            if event.type == pygame_gui.UI_TEXT_ENTRY_FINISHED:
-                nick = event.text
-                # В переменную записываем ник
+                if event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED:
+                    nick = event.text
+                    # В переменную записываем ник
 
-            if event.type == pygame_gui.UI_CONFIRMATION_DIALOG_CONFIRMED:
-                # Окно с подтверждением выхода
-                run = False
+                if event.user_type == pygame_gui.UI_CONFIRMATION_DIALOG_CONFIRMED:
+                    # Окно с подтверждением выхода
+                    run = False
 
-            if event.type == pygame_gui.UI_BUTTON_PRESSED:
-                if event.ui_element == switch_rules:
-                    # Окно с правилами
-                    rules_text()
+                if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
+                    if event.ui_element == switch_rules:
+                        # Окно с правилами
+                        rules_text()
 
-            if event.type == pygame_gui.UI_BUTTON_PRESSED:
-                if event.ui_element == switch_play:
-                    identification += 1
-                    # В ранее подготовленный словарь заносим необходимые данные
-                    dict_info['Id'] = str(identification)
-                    dict_info['Level'] = lev
-                    dict_info['Nickname'] = nick
-                    # Переходим в игру
-                    play()
+                if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
+                    if event.ui_element == switch_play:
+                        identification += 1
+                        # В ранее подготовленный словарь заносим необходимые данные
+                        dict_info['Id'] = str(identification)
+                        dict_info['Level'] = lev
+                        dict_info['Nickname'] = nick
+                        # Переходим в игру
+                        play()
 
         manager.update(time_delta)
         manager.draw_ui(windowSurface)
