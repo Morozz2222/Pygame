@@ -87,10 +87,9 @@ def end_of_play():
                     start_window()
                 # При нажатии на данные кнопки вы возвращаетесь в главное меню
         windowSurface.blit(backgroundImage1, (0, 0))
-        drawText('Нажмите [SPACE] для выхода'
-                 'в'
-                 'главное меню', font, windowSurface, 130, 400)
-        drawText(f"Ваш результат:{dict_info['Score']}", font, windowSurface, 150, 500)
+        drawText('Нажмите [SPACE] для выхода в главное меню', font3, windowSurface, 60, 400)
+
+        drawText(f"Ваш результат: {dict_info['Score']}", font3, windowSurface, 225, 500)
 
         all_sprites2.draw(windowSurface)
         all_sprites2.update()
@@ -114,6 +113,7 @@ def play():
     pygame.time.set_timer(pygame.USEREVENT, 3000)
     clock = pygame.time.Clock()
     pygame.mouse.set_visible(False)
+    loose_sound.stop()
     start_sound.stop()
     obstacleAdd = 0
     CARS = ('dataObjects/canm.png', 'dataObjects/bandg.png', 'dataObjects/znak.png')
@@ -156,13 +156,13 @@ def play():
 
         # В зависимости от того, какой уровень выбрал пользователь препятствия начинают появляться быстрее
         if lev == 'Easy':
-            ADDNEW = 45
+            ADDNEW = 40
             if score // 4 > 250:
-                ADDNEW = 37
+                ADDNEW = 35
         if lev == 'Medium':
-            ADDNEW = 35
+            ADDNEW = 30
             if score // 4 > 250:
-                ADDNEW = 27
+                ADDNEW = 25
         if lev == 'Hard':
             ADDNEW = 25
             if score // 4 > 250:
@@ -184,9 +184,10 @@ def play():
             if gets_hit:
                 gameOverSound2.play()
                 obstacle_group.remove(enemy)
-                COUNT3 += 1
                 sprites[i].kill()
                 i += 1
+                COUNT3 += 1
+
 
         gets_hitt = pygame.sprite.spritecollide(player, addition_group, True)
         if gets_hitt:
@@ -208,6 +209,7 @@ def play():
                     delimiter=';', quoting=csv.QUOTE_NONNUMERIC)
                 writer.writeheader()
                 writer.writerow(dict_info)
+            COUNT3 = 0
             end_of_play()
             # Переходим в последнее окно
             run = False

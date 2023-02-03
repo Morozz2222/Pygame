@@ -10,7 +10,7 @@ pygame.display.set_caption("Дорога чемпиона")
 # Загрузка шрифтов.
 font = pygame.font.Font("Fonts\TrainOne-Regular.ttf", 30)
 font2 = pygame.font.SysFont("gabriola", 30)
-font3 = pygame.font.SysFont("Fonts\TrainOne-Regular.ttf", 40)
+font3 = pygame.font.SysFont("gabriola", 40)
 
 # Словарь с данными для csv
 dict_info = {'Id': '',
