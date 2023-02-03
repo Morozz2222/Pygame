@@ -90,7 +90,7 @@ def end_of_play():
         drawText('Нажмите [SPACE] для выхода'
                  'в'
                  'главное меню', font, windowSurface, 130, 400)
-        drawText_2(f"Ваш результат:{dict_info['score']}", font, windowSurface, 150, 500)
+        drawText(f"Ваш результат:{dict_info['Score']}", font, windowSurface, 150, 500)
 
         all_sprites2.draw(windowSurface)
         all_sprites2.update()
