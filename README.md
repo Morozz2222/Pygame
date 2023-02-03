@@ -34,5 +34,5 @@
 
 ```
 $ pip install -r requirements.txt
-$ python main.py
+$ python Game.py
 ```
