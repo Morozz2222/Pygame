@@ -203,7 +203,7 @@ def play():
             tick = tick / 1000.0
             dict_info['Time'] = tick
             dk = dict_info.keys()
-            with open('Statistics2.csv', mode="w", newline='', encoding="utf8") as f:
+            with open('dataObjects/Statistics2.csv', mode="w", newline='', encoding="utf8") as f:
                 writer = csv.DictWriter(
                     f, fieldnames=dk,
                     delimiter=';', quoting=csv.QUOTE_NONNUMERIC)
